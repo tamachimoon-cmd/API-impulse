@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="API Impulse: monitor simples de status e latência de APIs.">
+  <title>API Impulse</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <main class="shell">
+    <header class="hero">
+      <div>
+        <p class="eyebrow">LAB//ABERTO #001</p>
+        <h1>API <span>Impulse</span></h1>
+        <p class="subtitle">Teste disponibilidade, status HTTP e latência sem transformar uma verificação simples em uma plataforma “enterprise” de quarenta microsserviços.</p>
+      </div>
+      <div class="pulse" aria-hidden="true"><i></i><i></i><i></i></div>
+    </header>
+
+    <section class="panel monitor-panel">
+      <form id="check-form">
+        <label for="url">Endpoint</label>
+        <div class="input-row">
+          <input id="url" name="url" type="url" placeholder="https://api.github.com" autocomplete="url" required>
+          <button type="submit">Verificar agora</button>
+        </div>
+        <p class="hint">Por segurança, endereços privados são bloqueados por padrão.</p>
+      </form>
+
+      <div id="feedback" class="feedback" role="status" aria-live="polite"></div>
+
+      <div class="metrics" aria-label="Resultado mais recente">
+        <article><span>Status</span><strong id="metric-status">—</strong></article>
+        <article><span>Latência</span><strong id="metric-latency">—</strong></article>
+        <article><span>Disponibilidade</span><strong id="metric-availability">—</strong></article>
+        <article><span>Última verificação</span><strong id="metric-time">—</strong></article>
+      </div>
+    </section>
+
+    <section class="panel chart-panel">
+      <div class="section-heading">
+        <div><p class="eyebrow">Telemetria local</p><h2>Latência recente</h2></div>
+        <button id="export-button" class="ghost" type="button">Exportar CSV</button>
+      </div>
+      <canvas id="latency-chart" width="900" height="280" aria-label="Gráfico de latência"></canvas>
+    </section>
+
+    <section class="panel history-panel">
+      <div class="section-heading">
+        <div><p class="eyebrow">Histórico</p><h2>Verificações</h2></div>
+        <button id="clear-button" class="ghost danger" type="button">Limpar</button>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Endpoint</th><th>Status</th><th>Latência</th><th>Horário</th></tr></thead>
+          <tbody id="history-body"><tr><td colspan="4" class="empty">Nenhuma verificação ainda.</td></tr></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <script type="module" src="/app.js"></script>
+</body>
+</html>
